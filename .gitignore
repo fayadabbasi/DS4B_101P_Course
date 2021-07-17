@@ -1,0 +1,20 @@
+/.DS_Store
+/.vscode
+/000_course_workflow
+/000_environment_setup
+/00_data_raw
+/00_data_wrangled
+/00_database
+/01_jumpstart
+/02_sql_database
+/03_pandas_core
+/04_time_series
+/05_programming
+/06_sktime
+/07_visualization
+/08_sql_database_update
+/Challenge 1
+/Challenge 2
+/checkpoint
+/environment.yml
+/my_pandas_extensions
