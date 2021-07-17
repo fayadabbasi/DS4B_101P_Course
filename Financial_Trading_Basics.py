@@ -27,11 +27,11 @@ bt_data.head()
 
 # 2. define trading strategy
 bt_strategy = bt.Strategy('Trade_Weekly',
-								[bt.algos.RunWeekly(), # run the trading algo weekly
-								 bt.algos.SelectAll(), # use all the data
-								 bt.algos.WeighEqually(), # maintain equal weighting
-								 bt.algos.Rebalance() # rebalance the portfolio
-                                 ] 
+				[bt.algos.RunWeekly(), # run the trading algo weekly
+				bt.algos.SelectAll(), # use all the data
+				bt.algos.WeighEqually(), # maintain equal weighting
+				bt.algos.Rebalance() # rebalance the portfolio
+                                ] 
                             )
 
 # 3. backtest the strategy w data
@@ -133,9 +133,9 @@ sma = price_data.rolling(20).mean()
 sma = talib.SMA(price_data, timeperiod=20)
 
 bt_strategy=bt.Strategy('AboveEMA',
-												[bt.algos.SelectWhere(price_data>sma),
-												 bt.algos.WeighEqually(),
-												 bt.algos.Rebalance()])
+				[bt.algos.SelectWhere(price_data>sma),
+				 bt.algos.WeighEqually(),
+				 bt.algos.Rebalance()])
 # Create the backtest and run it
 bt_backtest = bt.Backtest(bt_strategy, price_data)
 bt_result = bt.run(bt_backtest)
@@ -186,7 +186,8 @@ combined_df.plot(secondary_y = ['Signal'])
 stock_rsi.plot()
 plt.title('RSI')
 # define strategy
-bt_strategy = bt.Strategy('RSI_MeanReversion', [bt.algos.WeighTarget(signal), bt.algos.Rebalance()])
+bt_strategy = bt.Strategy('RSI_MeanReversion', [bt.algos.WeighTarget(signal), 
+						bt.algos.Rebalance()])
 bt_backtest = bt.Backtest(bt_strategy, price_data)
 bt_result = bt.run(bt_backtest)
 bt_result.plot(title='Backtest result')
@@ -196,7 +197,9 @@ bt_result.plot(title='Backtest result')
 def signal_strategy(ticker, period, name, start='2018-4-1', end='2020-11-1'):
 	price_data = bt.get(ticker, start=start, end=end)
 	sma = price_data.rolling(period).mean()
-	bt_strategy = bt.Strategy(name, [bt.algos.SelectWhere(price_data>sma), bt.algos.WeighEqually(), bt.algos.Rebalance()])
+	bt_strategy = bt.Strategy(name, [bt.algos.SelectWhere(price_data>sma), 
+					 bt.algos.WeighEqually(), 
+					 bt.algos.Rebalance()])
 	return bt.Backtest(bt_strategy, price_data)
 
 # Strategy optimization
@@ -210,7 +213,10 @@ bt_results.plot(title='Strategy optimization')
 # define benchmark
 def buy_and_hold(ticker, name, start='2018-11-1', end='2020-12-1'):
 	price_data = bt.get(ticker, start=start, end=end)
-	bt_strategy = bt.Strategy(name, [bt.algos.RunOnce(), bt.algos.SelectAll(), bt.algos.WeighEqually(), bt.algos.Rebalance()])
+	bt_strategy = bt.Strategy(name, [bt.algos.RunOnce(), 
+					 bt.algos.SelectAll(), 
+					 bt.algos.WeighEqually(), 
+					 bt.algos.Rebalance()])
 	return bt.Backtest(bt_strategy, price_data)
 
 benchmark = buy_and_hold(ticker, name='benchmark')
