@@ -162,10 +162,6 @@ bt_backtest=bt.Backtest(bt_strategy, price_data)
 bt_result=bt.run(bt_backtest)
 bt_result.plot(title='Backtest result')
 
-
-####################### THIS IS AS FAR AS I HAVE DEBUGGED ########################
-
-
 #### Mean Reversion Strategy ----
 
 # RSI > 70 suggests asset is overbought -- sell signal
